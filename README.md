@@ -1,2 +1,1 @@
-#Python-projects
-#This repo contains my projects and completed tasks from Python courses.
+Python-projects - this repo contains my projects and completed tasks from Python courses.
