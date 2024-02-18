@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+import argparse
+from argparse import RawTextHelpFormatter
+
 import input_data
 import input_data_check
 import api_requests
@@ -16,7 +19,7 @@ def main():
     user_mid_value = api_requests.request_data(user_currency, user_date)
 
     #Calculate if a refund or additional payment is required
-    calculator.calculate_difference(invoice_amount, user_amount, invoice_mid_value, user_mid_value)
+    difference = calculator.calculate_difference(invoice_amount, user_amount, invoice_mid_value, user_mid_value)
 
     return invoice_amount, invoice_currency, invoice_date, user_amount, user_currency, user_date, invoice_mid_value, user_mid_value, difference
 
