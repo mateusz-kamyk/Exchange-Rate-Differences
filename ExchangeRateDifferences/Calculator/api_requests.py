@@ -3,13 +3,14 @@
 import requests
 
 def request_data(currency, date):
-    #API requires specification of the table; for GBP, USD, and EUR it's table A.
-    table = "A"
-    #Collection of the exchange rate value via NBP API
-    url = (f"http://api.nbp.pl/api/exchangerates/rates/{table}/{currency}/{date}/")
-    response = requests.get(url)
-    
-    if currency == 'EUR' or 'GBP' or "USD":
+    if currency == 'PLN': #In case someone would like to pay in PLN
+        mid_value = 1.0
+    elif currency == 'EUR' or 'GBP' or 'USD':
+        #API requires specification of the table; for GBP, USD, and EUR it's table A.
+        table = "A"
+        #Collection of the exchange rate value via NBP API
+        url = (f"http://api.nbp.pl/api/exchangerates/rates/{table}/{currency}/{date}/")
+        response = requests.get(url)
         #Actions depending on the response
         if response.status_code == 200:
             data = response.json()
@@ -20,9 +21,7 @@ def request_data(currency, date):
             print(f"{response} - lack of data for a correctly determined time interval")
         else:
             print("Something went wrong.")     
-    elif currency == 'PLN': #In case someone would like to pay in PLN
-        mid_value = 1.0
     else:
-        print("This program accepts currencies: PLN, EUR, USD, GBP")
+        print("This program only accepts currencies: PLN, EUR, USD, GBP")
 
     return mid_value
