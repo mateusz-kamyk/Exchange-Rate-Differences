@@ -12,7 +12,7 @@ This Program:
 
 ## Manual
 The Exchange Rate Differences Program can be started by executing the command: 
-`./main.py`
+`./src/main.py`
 
 #### Arguments:
 
